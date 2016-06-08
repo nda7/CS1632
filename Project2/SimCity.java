@@ -18,10 +18,6 @@ public class SimCity {
 		Location library = new Location("Library");
 		Location college = new Location("College");
 		Location outsideCity = new Location("Outside City");
-		// The Philadelphia and Cleveland locations are just so setDests() works for outsideCity
-		// We don't actually populate them with roads and destinations.
-		// Location philadelphia = new Location("Philadelphia");
-		// Location cleveland = new Location("Cleveland");
 
 		// Populate the 5 locations with their available destinations and roads by which to get there
 		hotel.setDests(diner, library);
@@ -40,8 +36,6 @@ public class SimCity {
 		college.setRoads("Fifth Ave", "Phil St");
 		locations[3] = college;
 
-		// outsideCity.setDests(philadelphia, cleveland);
-		// outsideCity.setRoads("Fourth Ave", "Fifth Ave");
 		outsideCity.setDests(hotel, college);
 		outsideCity.setRoads("Fourth Ave", "Fifth Ave");
 		locations[4] = outsideCity;
@@ -50,14 +44,11 @@ public class SimCity {
 		rng = new Random(Integer.parseInt(args[0]));
 
 		// Go through each of the five drivers and determine/output their paths
-
 		// First up is Driver 0
-		// startingCity should be a number 0-4 (inclusive) that corresponds to an index in locations
-		
-		for (int i = 0 ; i < 5 ; i++){
-			travel(i);
+		int drivers = 0;
+		while(drivers<5){
+			drivers=travel(drivers);
 		}
-
 		
 
 		
@@ -81,13 +72,14 @@ public class SimCity {
 		return true;
 	}
 
-	public static void travel(int driverNum){
-		int startingCity = rng.nextInt(2); // nextInt returns an integer between 0 (inc.) and its argument (exc.)
-		Location currLocation = locations[startingCity];
+	public static int travel(int driverNum){
+		int startingLoc = rng.nextInt(5); // nextInt returns an integer between 0 (inc.) and its argument (exc.)
+		Location currLocation = locations[startingLoc];
 		do{
 			currLocation = nextLocation(currLocation, driverNum, rng);
 
 		}while(!(currLocation.getName().equals("Outside City")));
+		return driverNum+1;
 	}
 	
 	public static Location nextLocation(Location currLocation, int driverNum, Random rng){
@@ -106,7 +98,7 @@ public class SimCity {
 		String newRoad = currLocation.getRoad(nextInt);
 		System.out.print("Driver " + driverNum + " is heading from " + currLocation.getName());
 		System.out.println(" to " + newLocation.getName() + " via " + newRoad + ".");
-//		currLocation = newLocation;
+
 		if (newLocation.getName().equals("Outside City")){
 			if (newRoad.equals("Fourth Ave")){
 				System.out.println("Driver " + driverNum + " has gone to Philadelphia!");

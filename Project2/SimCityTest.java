@@ -21,6 +21,7 @@ public class SimCityTest {
 	Location mockLocation = Mockito.mock(Location.class);
 	Location mockLocation2 = Mockito.mock(Location.class);
 	Random mockRandom = Mockito.mock(Random.class);
+	SimCity mockSimCity = Mockito.mock(SimCity.class);
 	
 	@Before
 	public void setUp() throws Exception {
@@ -167,7 +168,14 @@ public class SimCityTest {
 		hotel.roads[0]="Phil St.";
 		hotel.roads[1]="Bill St.";
 		assertFalse(SimCity.nextLocation(hotel, 0, mockRandom).equals(library));
-		
-		
+	}
+	
+	@Test
+	//Test that travel completes when "Outside City" Location is reached
+	public void testTravel(){
+		Location x = new Location("Outside City");
+
+		Mockito.when(SimCity.nextLocation(Mockito.any(Location.class), 0, Mockito.any(Random.class))).thenReturn(x);
+		assertEquals(SimCity.travel(0),1);
 	}
 }
