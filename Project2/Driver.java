@@ -2,29 +2,41 @@ import java.util.Random;
 
 public class Driver {
 	
-	private int driverNum;
-	private Location currLocation;
-	private Location nextLocation;
-	private String road;
-	private int start = 0;
+	public int driverNum;
+	public Location currLocation;
+	public Location nextLocation;
+	public String road;
+	public boolean firstTurn;
 
 	public Driver(int num){
 		driverNum = num;
+
+		currLocation = null;
+		nextLocation = null;
+		road = null;
+		firstTurn = true;
 	}
 	
 	
-	public String travel(Map m, Random rng){
-		currLocation = nextLocation;
-				
-		if (start ==0){
-			int startingLoc = rng.nextInt(5); // nextInt returns an integer between 0 (inc.) and its argument (exc.)
-			currLocation = m.getLocation(startingLoc);
-			start++;
+	// travel() will move both currLocation and nextLocation one step forward.  Road will be updated
+	// returns a String containing the name of the driver's next location
+	public String travel(Map map, Random rng){
+		currLocation = nextLocation; // advance driver to where their current location now should be
+	
+		// We want to ensure execution of at least one turn (i.e. if they start outside the city, have them come into the city).
+		if (firstTurn){
+			int startingLoc = rng.nextInt(map.getSize()); // nextInt returns an integer between 0 (inc.) and its argument (exc.)
+			currLocation = map.getLocation(startingLoc);
+			firstTurn = false;
 		}
 		
-			int next = rng.nextInt(2);
-			nextLocation = m.nextLocation(currLocation, driverNum, next);
-			road = m.nextRoad(currLocation, next);
+		// Now we want to *actually* travel.
+		// Randomly choose between one of the two available locations to which the driver can go.
+		// Using the same index (next) to get the location and road works because of how map was set up.
+		int next = rng.nextInt(2);
+		nextLocation = map.nextLocation(currLocation, next);
+		road = map.nextRoad(currLocation, next);
+		
 
 		return nextLocation.getName();
 	}

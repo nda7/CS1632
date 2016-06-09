@@ -8,11 +8,12 @@ public class SimCity {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		
+		// Main first checks the input argument to make sure it's valid.
 		if(checkInput(args)!=true){
 			System.exit(1);
 		};
 		
+		// Create and populate the city map
 		map = new Map(5);
 		
 		Location hotel = new Location("Hotel");
@@ -42,23 +43,23 @@ public class SimCity {
 		map.addLocation(college);
 		map.addLocation(library);
 		map.addLocation(outsideCity);
-		// Construct the random number generator using the number from the command line argument
+
+		// Construct the random number generator using the number from the command line argument.
 		rng = new Random(Integer.parseInt(args[0]));
 
-		// Go through each of the five drivers and determine/output their paths
-		// First up is Driver 0
-		int drivers = 0;
-		while(drivers<5){
-			Driver x = new Driver(drivers);
+		// Go through each of the five drivers and determine/output their paths, starting with Driver 0.
+		for(int drivers = 0 ; drivers < 5 ; drivers++){
+			Driver currDriver = new Driver(drivers);
 			
-			while(!x.travel(map, rng).equals("Outside City")){
-				System.out.println(x.printPath());
+			// Continue to call travel() on the driver until they leave the city.
+			while(!currDriver.travel(map, rng).equals("Outside City")){
+				System.out.println(currDriver.printPath());
 			}
-				System.out.println(x.printFinal());
-				System.out.println("\n-----\n");
-			drivers++;
+			System.out.println(currDriver.printPath()); // Print the road they took to leave the city.
+			System.out.println(currDriver.printFinal()); // Print which city they're going to.
+			System.out.println("\n-----\n");
 		}		
-}
+	}
 		
 	protected static boolean checkInput (String[] args){
 		if (args.length != 1) {
