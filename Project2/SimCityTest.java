@@ -208,7 +208,7 @@ public class SimCityTest {
 	//We then assert that the road name returned is the one we expected.
 	public void testNextRoad(){
 		Map m = new Map(2);
-		Mockito.when(m.nextRoad(mockLocation, 0)).thenReturn("Forbes Ave");
+		Mockito.when(mockLocation.getRoad(Mockito.anyInt())).thenReturn("Forbes Ave");
 		assertEquals("Forbes Ave", m.nextRoad(mockLocation, 0));
 	}
 	
