@@ -24,6 +24,21 @@ public class HoodPopperTests {
 	 * @author Nathan Anuskiewicz
 	 */
 	
+	
+	//Given that I am on the main page
+	//Then I see that there is a button to Tokenize Input
+	
+	@Test
+	public void testTokenizeExist() {
+		
+		//Check that the Tokenize button exists
+		
+		//If the element is not found, an exception will be thrown and the test will fail.
+		WebElement button = driver.findElement(By.name("commit"));
+		
+		
+	}
+	
 	//Given that I am on the main page
 	//When I enter a = 5 into the text box and click tokenize
 	//Then I see each space tokenized as "on_sp"
@@ -142,11 +157,7 @@ public class HoodPopperTests {
 		assertTrue(result.contains("[[1, 6], :on_op, \"+\"]"));
 	}
 	
-	//Given that I am on the main page
-	//When I click 'Tokenize'
-	//And then I click the 'back' link
-	//Then I am returned to the main page to test new inputs
-	
+	//Mark in summary. Does not go back.
 //	@Test
 //	public void testTokenizeBack(){
 //		
@@ -156,10 +167,15 @@ public class HoodPopperTests {
 //	
 //		WebElement link = driver.findElement(By.linkText("Back"));
 //		link.click();
-////		System.out.println(link.getAttribute("onclick"));
+//		try{
+//		Thread.sleep(10000);
+//		}catch(Exception e){}
+//		
+//		System.out.println(link.getAttribute("onclick"));
 //		
 //		
 //		System.out.println(driver.getPageSource());
+//		
 //		
 //		assertEquals("http://lit-bayou-7912.herokuapp.com/",driver.getCurrentUrl());
 //	}
@@ -171,6 +187,24 @@ public class HoodPopperTests {
 	 * So that I can understand how ruby parsers work.
 	 * @author Nathan Anuskiewicz
 	 */
+	
+	//Given that I am on the main page
+	//Then I see that there is a button to Parse Input
+	
+	@Test
+	public void testParseExist(){
+		
+		//Check that the Parse button Exists
+		//Parse button should be the second button with the name of commit
+		List<WebElement> button;
+		button = driver.findElements(By.name("commit"));
+		
+		//If element is not found, exception will be thrown and test fails.
+		WebElement parse = button.get(1);
+		
+	}
+	
+	
 	
 	//Given that I am on the main page
 	//When I enter "a = 1 + 5" into the text area and click Parse
@@ -263,6 +297,21 @@ public class HoodPopperTests {
 	 * So that I can understand how ruby compilers work.
 	 * @author Nathan Anuskiewicz
 	 */
+	
+	//Given that I am on the main page
+	//Then I see that there is a button to Parse Input
+	
+	@Test
+	public void testCompileExist(){
+			
+		//Click that the Compile button exists
+		//Parse button should be the second button with the name of commit
+		List<WebElement> button;
+		button = driver.findElements(By.name("commit"));
+		
+		//If element not found, exception will be thrown and test will fail
+		WebElement compile = button.get(2);
+	}
 	
 	//Given that I am on the main page
 	//When I enter 'puts "Hello"' in the text area and click Compile
