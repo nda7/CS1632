@@ -157,30 +157,6 @@ public class HoodPopperTests {
 		assertTrue(result.contains("[[1, 6], :on_op, \"+\"]"));
 	}
 	
-	//Mark in summary. Does not go back.
-//	@Test
-//	public void testTokenizeBack(){
-//		
-//		//Move to tokenize output page
-//		WebElement button = driver.findElement(By.name("commit"));
-//		button.click();
-//	
-//		WebElement link = driver.findElement(By.linkText("Back"));
-//		link.click();
-//		try{
-//		Thread.sleep(10000);
-//		}catch(Exception e){}
-//		
-//		System.out.println(link.getAttribute("onclick"));
-//		
-//		
-//		System.out.println(driver.getPageSource());
-//		
-//		
-//		assertEquals("http://lit-bayou-7912.herokuapp.com/",driver.getCurrentUrl());
-//	}
-	
-	
 	/**
 	 * As a user,
 	 * I would like to parse ruby code
