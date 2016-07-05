@@ -23,7 +23,6 @@ public class LaboonMethodsTest {
 				//check each index of Laboonifed array against the squared value
 				//of the original array 
 				assertEquals(test[w],next[w]*next[w]);
-//				System.out.println(test[w]+" "+next[w]*next[w]);
 			}
 		}
 	}
