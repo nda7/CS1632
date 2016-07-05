@@ -12,7 +12,7 @@ public class LaboonMethodsTest {
 	public void testSquares() {
 		
 		//create new random array at each iteration and create the Laboonified version
-		for (int i=0;i<1000;i++){
+		for (int i=0;i<10000;i++){
 			
 			int[] next = newArray();
 			int[] test = LaboonMethods.laboonify(next);
@@ -34,7 +34,7 @@ public class LaboonMethodsTest {
 	public void testSumofSquares(){
 		
 		//create new random array at each iteration and create the Laboonified version
-		for (int i=0;i<1000;i++){
+		for (int i=0;i<10000;i++){
 			
 			int[] next = newArray();
 			int[] test = LaboonMethods.laboonify(next);
@@ -57,7 +57,7 @@ public class LaboonMethodsTest {
 	public void testLength(){
 		
 		//create new random array at each iteration and create the Laboonified version
-		for (int i=0;i<1000;i++){
+		for (int i=0;i<10000;i++){
 			
 			int[] next = newArray();
 			int[] test = LaboonMethods.laboonify(next);
